@@ -39,3 +39,7 @@ exports.editProfileGetController = async (req, res, next) => {
     }
 };
 
+exports.editProfilePostController = (req, res, next) => {
+    
+}
+
