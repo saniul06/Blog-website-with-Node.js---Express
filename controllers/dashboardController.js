@@ -40,6 +40,6 @@ exports.editProfileGetController = async (req, res, next) => {
 };
 
 exports.editProfilePostController = (req, res, next) => {
-    res.render('pages/dashboard/edit-profile')
+    res.render('pages/dashboard/edit-profile', {title:"Edit Profile"})
 }
 
