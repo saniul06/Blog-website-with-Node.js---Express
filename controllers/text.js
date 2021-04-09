@@ -186,3 +186,15 @@ exports.editProfilePostController = async (req, res, next) => {
         next(e)
         console.log('skjdfksdfj slkdjf skdlfj ')
     }
+
+exports.aaaaaaaaaaaaaaaaa = async (req, res, next) => {
+    try {
+        const user = await Profile.findOne({user: req.user._id})
+    if(user){
+        return res.render('pages/dashboard/edit-profile', {title: "Edit Profile"})
+    }
+     res.redirect('/dashboard/create-profile')
+    } catch(e) {
+        next(e)
+        console.log('skjdfksdfj slkdjf skdlfj ')
+    }
