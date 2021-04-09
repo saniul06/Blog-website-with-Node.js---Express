@@ -184,4 +184,5 @@ exports.editProfilePostController = async (req, res, next) => {
      res.redirect('/dashboard/create-profile')
     } catch(e) {
         next(e)
+        console.log('skjdfksdfj slkdjf skdlfj ')
     }
