@@ -174,3 +174,14 @@ exports.logoutController = (req, res, next) => {
         return res.redirect("/auth/login");
     });
 };
+
+exports.editProfilePostController = async (req, res, next) => {
+    try {
+        const user = await Profile.findOne({user: req.user._id})
+    if(user){
+        return res.render('pages/dashboard/edit-profile', {title: "Edit Profile"})
+    }
+     res.redirect('/dashboard/create-profile')
+    } catch(e) {
+        next(e)
+    }
