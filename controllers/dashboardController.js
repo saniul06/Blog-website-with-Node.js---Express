@@ -41,6 +41,5 @@ exports.editProfileGetController = async (req, res, next) => {
 
 exports.editProfilePostController = (req, res, next) => {
     res.render('pages/dashboard/edit-profile')
-    console.log('add console')
 }
 
