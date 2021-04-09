@@ -1,0 +1,33 @@
+<!--
+  TODO:  remove this file
+-->
+
+<%- include('../partials/header') %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 my-5">
+                <div class="card card-body">
+                    <h4 class='mb-3'>Create New Account</h4>
+                    <form action="/play" method="post" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <label for="username">Enter your username (must be unique)</label>
+                            <input type="file" name="file-name" class="form-control" id="username">
+                        </div>
+                       
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary">
+                        </div>
+                    </form>
+                    <a href="/auth/login" class='text-center'>Already have an accunt? Login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../partials/footer') %>
+
+        </body>
+
+        </html>

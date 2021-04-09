@@ -1,0 +1,25 @@
+{
+    "editor.tokenColorCustomizations": {
+        "[Default Dark+]": {
+            "textMateRules": [
+                {
+                    "scope": [
+                        "variable.other.constant",
+                        "variable.other.enummember",
+                    ],
+                    "settings": {
+                        "foreground": "#9CDCFE"
+                    }
+                },
+            ],
+        },
+    },
+    "workbench.colorCustomizations": {
+        "[Default Dark+]": {
+            "statusBar.background": "#1E1E1A",
+            "activityBar.background": "#1E1E1A",
+            "sideBar.background": "#1E1E1A",
+            "editor.background": "#1E1E1A",
+        }
+    }
+}

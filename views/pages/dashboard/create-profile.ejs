@@ -1,0 +1,85 @@
+<%- include('../../partials/header') %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-8 offset-md-1">
+                        <div class="card card-body my-5">
+                            <h4><%= title %></h4>
+                        <div class="profile-pics">
+                            <img src="<%= user.profilePics %>" alt="Profile picture" class="img-thumbnail img-fluid" id="profilePics" >
+                        </div>
+                        <form action="/dashboard/upload/profile-pics" method="post" id="profilePicsForm" enctype="multipart/form-data">
+                            <input type="file" name="profilePics" id="profilePicsfile" accept="image/*">
+                            <input type="button" value="Remove Pics" id="removeProfilePics" class="btn btn-danger btn-sm my-2" style="display:<%= user.profilePics.includes('default.jpg') ?'none' : 'block'  %>">
+                            <input type="submit" class="btn btn-primary" value="Upload">
+                        </form>
+                        <form action="/dashboard/create-profile" method="post">
+                            <div class="form-group">
+                                <label for="name">Enter your name</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Enter your email</label>
+                                <input type="text" class="form-control" name="email" id="email" value="<%= user.email %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Enter short title</label>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="enter short title">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Enter short Bio</label>
+                                <textarea class="form-control" name="title" id="title"></textarea>
+                            </div>
+                            <div>
+                                <p class="lead">Your Social Links</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">
+                                        <i class="fab fa-internet-explorer"></i>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" name='website' placeholder="Website">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">
+                                        <i class="fab fa-facebook-square"></i>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="facebook" placeholder="Facebook">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">
+                                        <i class="fab fa-twitter-square"></i>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="twitter" placeholder="Twitter">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">
+                                        <i class="fab fa-github-square"></i>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="github" placeholder="Github">
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+        </div>
+    </div>
+
+
+    <%- include('../../partials/footer') %>
+
+        </body>
+
+        </html>
