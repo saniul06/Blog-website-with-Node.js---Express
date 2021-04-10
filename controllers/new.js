@@ -1,2 +1,3 @@
-let first = 'i am branch b';
-
+function show(){
+    console.log('i am in master')
+}
