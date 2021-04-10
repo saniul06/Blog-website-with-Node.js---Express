@@ -7,3 +7,4 @@ function show(){
 function an(){
     console.log('i am a function')
 }
+
