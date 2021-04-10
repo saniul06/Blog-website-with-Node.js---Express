@@ -1,6 +1,6 @@
 let first = 10;
 
-let second = 20;
+let second = 'second';
 
 let third = " i am third"
 
