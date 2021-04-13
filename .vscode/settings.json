@@ -19,7 +19,7 @@
             "statusBar.background": "#1E1E1A",
             "activityBar.background": "#1E1E1A",
             "sideBar.background": "#1E1E1A",
-            "editor.background": "#1E1E1A",
+            "editor.background": "#1E1E0E",
         }
     }
 }

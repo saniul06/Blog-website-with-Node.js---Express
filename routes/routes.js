@@ -1,5 +1,6 @@
 const authRoute = require("./authRoutes");
 const dashboardRoute = require("./dashboardRoutes");
+const uploadRoute = require('./uploadRoutes');
 const validatorRoutes = require("../play/play"); // TODO: remove this
 const {
     isAuthenticated,
@@ -14,6 +15,10 @@ const routes = [
     {
         path: "/dashboard",
         handler: dashboardRoute,
+    },
+    {
+        path: "/upload",
+        handler: uploadRoute,
     },
     {
         path: "/play", // TODO: remove this
