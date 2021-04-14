@@ -7,9 +7,7 @@ const storage = multer.diskStorage({
         cb(null, 'public/uploads/' + file.fieldname);
     },
     filename: (req, file, cb) => {
-        const name = file.fieldname + '-' + Date.now() + file.originalname;
-        req.profilePics = name;
-        cb(null, name);
+        cb(null, file.fieldname + '-' + Date.now() + '-' + file.originalname);
     }
 });
 
@@ -22,12 +20,13 @@ const upload = multer({
         const types = /jpeg|jpg|png|gif/;
         const extName = types.test(path.extname(file.originalname).toLowerCase());
         const mimeType = types.test(file.mimetype);
+        console.log(file.mimetype)
         if(extName && mimeType){
             cb(null, true);
 
         } else {
-            // cb(new Error('Only supprted jpeg,jpg,png,gif'))
-            cb(true)
+            cb(new Error('Only supprted jpeg,jpg,png,gif'))
+            // cb(true)
         }
     }
 })

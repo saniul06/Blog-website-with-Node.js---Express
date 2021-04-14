@@ -30,5 +30,9 @@ exports.uploadProfilePics = async (req, res, next) => {
                 profilePics: req.user.profilePics
             })
         }
+    } else {
+        res.status(500).json({
+            profilePics: req.user.profilePics
+        })
     }
 }
