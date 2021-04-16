@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery Fire Event on File Select</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+</head>
+
+<body>
+    <form action="/upload/profile-pics" method="post" id="profilePicsForm" enctype="multipart/form-data">
+        <input type="file" name="profilePics" id="profilePicsfile" accept="image/*">
+        <input type="button" value="Remove Pics" id="removeProfilePics" class="btn btn-danger btn-sm my-2"
+            style="display:<%= user.profilePics.includes('default.jpg') ?'none' : 'block'  %>">
+        <input type="submit" class="btn btn-primary" value="Upload">
+    </form>
+    <script>
+        window.onload = () => {
+            // $('#profilePicsfile').on('change', function(e)  {
+            //     alert("A file has been selected.");
+            // });
+
+            $('#profilePicsFile').on('change', function (e) {
+                alert("Hello! I am an alert box!");
+                if (this.files[0]) {
+                    readableFile(this.files[0])
+                    $('#crop-modal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    })
+                }
+            })
+
+            // $('#profilePicsFile').on('change', function (e) {
+            //     alert("Hello! I am an alert box!");
+            //     if (this.files[0]) {
+            //         readableFile(this.files[0])
+            //         $('#crop-modal').modal({
+            //             backdrop: 'static',
+            //             keyboard: false
+            //         })
+            //     }
+            // })
+
+        }
+    </script>
+</body>
+
+</html>
