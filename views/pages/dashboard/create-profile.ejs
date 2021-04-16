@@ -1,4 +1,5 @@
 <%- include('../../partials/header') %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
     <div class="container">
         <div class="row">
             <div class="col-md-2">
@@ -8,78 +9,114 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-1">
                         <div class="card card-body my-5">
-                            <h4><%= title %></h4>
-                        <div class="profile-pics">
-                            <img src="<%= user.profilePics %>" alt="Profile picture" class="img-thumbnail img-fluid" id="profilePics" >
-                        </div>
-                        <form action="/upload/profile-pics" method="post" id="profilePicsForm" enctype="multipart/form-data">
-                            <input type="file" name="profilePics" id="profilePicsfile" accept="image/*">
-                            <input type="button" value="Remove Pics" id="removeProfilePics" class="btn btn-danger btn-sm my-2" style="display:<%= user.profilePics.includes('default.jpg') ?'none' : 'block'  %>">
-                            <input type="submit" class="btn btn-primary" value="Upload">
-                        </form>
-                        <form action="/dashboard/create-profile" method="post">
-                            <div class="form-group">
-                                <label for="name">Enter your name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name">
+                            <h4>
+                                <%= title %>
+                            </h4>
+                            <div class="profile-pics">
+                                <img src="<%= user.profilePics %>" alt="Profile picture" class="img-thumbnail img-fluid"
+                                    id="profilePics">
                             </div>
-                            <div class="form-group">
-                                <label for="email">Enter your email</label>
-                                <input type="text" class="form-control" name="email" id="email" value="<%= user.email %>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Enter short title</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="enter short title">
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Enter short Bio</label>
-                                <textarea class="form-control" name="title" id="title"></textarea>
-                            </div>
-                            <div>
-                                <p class="lead">Your Social Links</p>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="basic-addon1">
-                                        <i class="fab fa-internet-explorer"></i>
-                                      </span>
-                                    </div>
-                                    <input type="text" class="form-control" name='website' placeholder="Website">
+                            <form action="/upload/profile-pics" method="post" id="profilePicsForm"
+                                enctype="multipart/form-data">
+                                <input type="file" name="profilePics" id="profilePicsfile" accept="image/*">
+                                <input type="button" value="Remove Pics" id="removeProfilePics"
+                                    class="btn btn-danger btn-sm my-2"
+                                    style="display:<%= user.profilePics.includes('default.jpg') ?'none' : 'block'  %>">
+                                <input type="submit" class="btn btn-primary" value="Upload">
+                            </form>
+                            <form action="/dashboard/create-profile" method="post">
+                                <div class="form-group">
+                                    <label for="name">Enter your name</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="Enter your name">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="basic-addon1">
-                                        <i class="fab fa-facebook-square"></i>
-                                      </span>
-                                    </div>
-                                    <input type="text" class="form-control" name="facebook" placeholder="Facebook">
+                                <div class="form-group">
+                                    <label for="email">Enter your email</label>
+                                    <input type="text" class="form-control" name="email" id="email"
+                                        value="<%= user.email %>" disabled>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="basic-addon1">
-                                        <i class="fab fa-twitter-square"></i>
-                                      </span>
-                                    </div>
-                                    <input type="text" class="form-control" name="twitter" placeholder="Twitter">
+                                <div class="form-group">
+                                    <label for="title">Enter short title</label>
+                                    <input type="text" class="form-control" name="title" id="title"
+                                        placeholder="enter short title">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="basic-addon1">
-                                        <i class="fab fa-github-square"></i>
-                                      </span>
-                                    </div>
-                                    <input type="text" class="form-control" name="github" placeholder="Github">
+                                <div class="form-group">
+                                    <label for="title">Enter short Bio</label>
+                                    <textarea class="form-control" name="title" id="title"></textarea>
                                 </div>
-                            </div>
-                        </form>
+                                <div>
+                                    <p class="lead">Your Social Links</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-internet-explorer"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name='website' placeholder="Website">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-facebook-square"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="facebook" placeholder="Facebook">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-twitter-square"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="twitter" placeholder="Twitter">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-github-square"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="github" placeholder="Github">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>     
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="crop-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="cropped-iamge"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
 
 
     <%- include('../../partials/footer') %>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
+        <script src="/scripts/profilePicUpload.js"></script>
         </body>
 
         </html>
