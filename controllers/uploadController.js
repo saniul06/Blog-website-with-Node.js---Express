@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const Profile = require('../models/Profile');
+const mongoose = require('mongoose')
+mongoose.set('useFindAndModify', false);
 
 exports.uploadProfilePics = async (req, res, next) => {
     if (req.file) {
@@ -10,19 +12,20 @@ exports.uploadProfilePics = async (req, res, next) => {
                     user: req.user._id
                 }, {
                     $set: {
-                        profilePics: `/uploads/${req.file.filename}`
+                        profilePics: `/uploads/${req.file.fieldname}/${req.file.filename}`
                     }
                 })
             }
+            console.log(req.user.id)
             await User.findOneAndUpdate({
-                id: req.user._id
+                _id: req.user.id
             }, {
                 $set: {
-                    profilePics: `/uploads/${req.file.filename}`
+                    profilePics: `/uploads/${req.file.fieldname}/${req.file.filename}`
                 }
             })
             res.status(200).json({
-                profilePics: `/uploads/${req.file.filename}`,
+                profilePics: `/uploads/${req.file.fieldname}/${req.file.filename}`,
                 destination: req.file.destination
             })
         } catch (e) {

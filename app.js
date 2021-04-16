@@ -26,11 +26,11 @@ setRoutes(app);
 
 
 // Page Not Found handler
-app.use((req, res, next) => {
-    const error = new Error('Page not found so it is 404')
-    error.status = 404;
-    next(error);
-});
+// app.use((req, res, next) => {
+//     const error = new Error('Page not found so it is 404')
+//     error.status = 404;
+//     next(error);
+// });
 
 // Defauld Error Handler
 app.use((error, req, res, next) => {
