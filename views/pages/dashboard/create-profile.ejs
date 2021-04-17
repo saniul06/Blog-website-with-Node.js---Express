@@ -14,16 +14,18 @@
                             </h4>
                             <div class="profile-pics">
                                 <img src="<%= user.profilePics %>" alt="Profile picture" class="img-thumbnail img-fluid"
-                                    id="profilePics">
-                            </div>
-                            <form action="/upload/profile-pics" method="post" id="profilePicsForm"
-                                enctype="multipart/form-data">
-                                <input type="file" name="profilePics" id="profilePicsFile" accept="image/*">
-                                <input type="button" value="Remove Pics" id="removeProfilePics"
+                                    id="profilePics"><br>
+                                    <form name="profilePics">
+                                        <input type="file" name="profilePics" id="profilePicsFile" accept="image/*">
+                                    </form>
+                                <input type="submit" value="Remove Pics" id="removeProfilePics"
                                     class="btn btn-danger btn-sm my-2"
-                                    style="display:<%= user.profilePics.includes('default.jpg') ?'none' : 'block'  %>">
-                                <input type="submit" class="btn btn-primary" value="Upload">
-                            </form>
+                                    style="display:<%= user.profilePics.includes('default.jpg') ?'none' : 'inline-block'  %>">
+                            </div>
+                          
+                                
+                               
+                       
                             <form action="/dashboard/create-profile" method="post">
                                 <div class="form-group">
                                     <label for="name">Enter your name</label>
