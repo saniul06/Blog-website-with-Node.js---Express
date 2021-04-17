@@ -19,8 +19,8 @@ window.onload = function () {
                 })
                 .then(
                     $(".cr-slider").attr({
-                        'min': 0.5,
-                        'max': 1.5,
+                        min: 0.5,
+                        max: 1.5,
                     })
                 );
         };
@@ -73,20 +73,18 @@ window.onload = function () {
 
     $("#removeProfilePics").on("click", function () {
         document.forms["profilePics"].reset();
-        function r() {
-            const req = new Request("/upload/profile-pic", {
-                method: "delete",
-            });
-            return fetch(req);
-        }
-        r()
+        const req = new Request("/upload/profile-pic", {
+            method: "delete",
+        });
+        fetch(req)
             .then((res) => res.json())
             .then((data) => {
                 document.getElementById("profilePics").src = data.profilePics;
-                document.getElementById("removeProfilePics").style.display = 'none';
+                document.getElementById("removeProfilePics").style.display =
+                    "none";
             })
-            .catch(e => {
-                console.log(e)
-            })
+            .catch((e) => {
+                console.log(e);
+            });
     });
 };
