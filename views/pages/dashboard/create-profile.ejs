@@ -29,8 +29,11 @@
                             <form action="/dashboard/create-profile" method="post">
                                 <div class="form-group">
                                     <label for="name">Enter your name</label>
-                                    <input type="text" class="form-control" name="name" id="name"
+                                    <input type="text" class="form-control <%= errors.name ? 'is-invalid' : '' %>" name="name" id="name"
                                         placeholder="Enter your name">
+                                        <div class="invalid-feedback">
+                                            <%= errors.name %>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Enter your email</label>
@@ -39,12 +42,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Enter short title</label>
-                                    <input type="text" class="form-control" name="title" id="title"
+                                    <input type="text" class="form-control <%= errors.title ? 'is-invalid' : '' %>" name="title" id="title"
                                         placeholder="enter short title">
+                                        <div class="invalid-feedback">
+                                            <%= errors.title %>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Enter short Bio</label>
-                                    <textarea class="form-control" name="title" id="title"></textarea>
+                                    <textarea class="form-control <%= errors.bio ? 'is-invalid' : '' %>" name="bio" id="title"></textarea>
+                                    <div class="invalid-feedback">
+                                        <%= errors.bio %>
+                                    </div>
                                 </div>
                                 <div>
                                     <p class="lead">Your Social Links</p>
@@ -54,7 +63,10 @@
                                                 <i class="fab fa-internet-explorer"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name='website' placeholder="Website">
+                                        <input type="text" class="form-control <%= errors.website ? 'is-invalid' : '' %>" name='website' placeholder="Website">
+                                        <div class="invalid-feedback">
+                                            <%= errors.website %>
+                                        </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -62,7 +74,10 @@
                                                 <i class="fab fa-facebook-square"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="facebook" placeholder="Facebook">
+                                        <input type="text" class="form-control <%= errors.facebook ? 'is-invalid' : '' %>" name="facebook" placeholder="Facebook">
+                                        <div class="invalid-feedback">
+                                            <%= errors.facebook %>
+                                        </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -70,7 +85,10 @@
                                                 <i class="fab fa-twitter-square"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="twitter" placeholder="Twitter">
+                                        <input type="text" class="form-control <%= errors.twitter ? 'is-invalid' : '' %>" name="twitter" placeholder="Twitter">
+                                        <div class="invalid-feedback">
+                                            <%= errors.twitter %>
+                                        </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -78,9 +96,13 @@
                                                 <i class="fab fa-github-square"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" name="github" placeholder="Github">
+                                        <input type="text" class="form-control <%= errors.github ? 'is-invalid' : '' %>" name="github" placeholder="Github">
+                                        <div class="invalid-feedback">
+                                            <%= errors.github %>
+                                        </div>
                                     </div>
                                 </div>
+                                <input type="submit" class="btn btn-primary" value="Submit">
                             </form>
                         </div>
                     </div>
@@ -88,10 +110,6 @@
             </div>
         </div>
     </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
 
     <!-- Modal -->
     <div class="modal fade" id="crop-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

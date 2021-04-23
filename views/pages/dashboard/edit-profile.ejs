@@ -1,16 +1,145 @@
 <%- include('../../partials/header') %>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3 my-5">
-                <h1>Edit Profile</h1>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-8 offset-md-1">
+                        <div class="card card-body my-5">
+                            <h4>
+                                <%= title %>
+                            </h4>
+                            <div class="profile-pics">
+                                <img src="<%= user.profilePics %>" alt="Profile picture" class="img-thumbnail img-fluid"
+                                    id="profilePics"><br>
+                                    <form name="profilePics">
+                                        <input type="file" name="profilePics" id="profilePicsFile" accept="image/*">
+                                    </form>
+                                <input type="submit" value="Remove Pics" id="removeProfilePics"
+                                    class="btn btn-danger btn-sm my-2"
+                                    style="display:<%= user.profilePics.includes('default.jpg') ?'none' : 'inline-block'  %>">
+                            </div>
+                          
+                                
+                               
+                       
+                            <form action="/dashboard/edit-profile" method="post">
+                                <div class="form-group">
+                                    <label for="name">Enter your name</label>
+                                    <input type="text" class="form-control <%= errors.name ? 'is-invalid' : '' %>" name="name" id="name"
+                                        placeholder="Enter your name" value="<%= profile.name %>">
+                                        <div class="invalid-feedback">
+                                            <%= errors.name %>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Enter your email</label>
+                                    <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" name="email" id="email"
+                                        value="<%= user.email %>">
+                                        <div class="invalid-feedback">
+                                            <%= errors.email %>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Enter short title</label>
+                                    <input type="text" class="form-control <%= errors.title ? 'is-invalid' : '' %>" name="title" id="title"
+                                        placeholder="enter short title" value="<%= profile.title %>">
+                                        <div class="invalid-feedback">
+                                            <%= errors.title %>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Enter short Bio</label>
+                                    <textarea class="form-control <%= errors.bio ? 'is-invalid' : '' %>" name="bio" id="title"> <%= profile.title %></textarea>
+                                    <div class="invalid-feedback">
+                                        <%= errors.bio %>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="lead">Your Social Links</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-internet-explorer"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control <%= errors.website ? 'is-invalid' : '' %>" name='website' placeholder="Website" value="<%= profile.website %>">
+                                        <div class="invalid-feedback">
+                                            <%= errors.website %>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-facebook-square"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control <%= errors.facebook ? 'is-invalid' : '' %>" name="facebook" placeholder="Facebook" value="<%= profile.facebook %>">
+                                        <div class="invalid-feedback">
+                                            <%= errors.facebook %>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-twitter-square"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control <%= errors.twitter ? 'is-invalid' : '' %>" name="twitter" placeholder="Twitter" value="<%= profile.twitter %>">
+                                        <div class="invalid-feedback">
+                                            <%= errors.twitter %>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fab fa-github-square"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control <%= errors.github ? 'is-invalid' : '' %>" name="github" placeholder="Github" value="<%= profile.github %>">
+                                        <div class="invalid-feedback">
+                                            <%= errors.github %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="crop-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="cropped-iamge"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id='cancel-cropping' class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id='upload-image' class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
 
 
     <%- include('../../partials/footer') %>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
+        <script src="/scripts/profilePicUpload.js"></script>
         </body>
 
         </html>

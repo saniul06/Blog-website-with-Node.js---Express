@@ -17,7 +17,9 @@ exports.signupPostController = async (req, res, next) => {
     const { username, email, password, confirmPassword } = req.body;
     const error = validationResult(req);
     const errorResult = error.formatWith(errorValiatorFormatter);
+   
     if (!errorResult.isEmpty()) {
+        console.log(error.mapped());
         return res.render("pages/auth/signup", {
             title: "Create a new Account",
             error: errorResult.mapped(),
@@ -44,11 +46,7 @@ exports.signupPostController = async (req, res, next) => {
                 message: Flash.getMessage(req),
             });
         }
-    } catch (e) {
-        next(e);
-    }
 
-    try {
         const userEmail = await userModel.findOne({ email });
         if (userEmail) {
             req.flash("fail", "E-mail already in use");
@@ -63,11 +61,7 @@ exports.signupPostController = async (req, res, next) => {
                 message: Flash.getMessage(req),
             });
         }
-    } catch (e) {
-        next(e);
-    }
 
-    try {
         if (confirmPassword !== req.body.password) {
             req.flash("fail", "Password doesn't match");
             return res.render("pages/auth/signup", {
@@ -81,27 +75,21 @@ exports.signupPostController = async (req, res, next) => {
                 message: Flash.getMessage(req),
             });
         }
-    } catch (e) {
-        next(e);
-    }
-    try {
+
         const hashedPassword = await bcrypt.hash(password, 11);
         const user = new userModel({
             username,
             email,
             password: hashedPassword,
         });
-        try {
-            await user.save();
-            req.flash("success", "Your Registration is Successful");
-            res.render("pages/auth/login", {
-                title: "Login page",
-                error: {},
-                message: Flash.getMessage(req),
-            });
-        } catch (e) {
-            next(e);
-        }
+
+        await user.save();
+        req.flash("success", "Your Registration is Successful");
+        res.render("pages/auth/login", {
+            title: "Login page",
+            error: {},
+            message: Flash.getMessage(req),
+        });
     } catch (e) {
         next(e);
     }

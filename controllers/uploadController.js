@@ -24,10 +24,21 @@ exports.uploadProfilePics = async (req, res, next) => {
                     profilePics: `/uploads/${req.file.fieldname}/${req.file.filename}`
                 }
             })
+
+            const deletePrevPics = req.user.profilePics.includes('profilePics');
+            if (deletePrevPics) {
+                fs.unlink(`public${req.user.profilePics}`, err => {
+                    if(err){
+                        console.log(err)
+                    }
+                })
+            }
+
             res.status(200).json({
                 profilePics: `/uploads/${req.file.fieldname}/${req.file.filename}`
             })
         } catch (e) {
+            console.log(e)
             res.status(500).json({
                 profilePics: req.user.profilePics
             })
@@ -58,7 +69,7 @@ exports.removeProfilePics = async (req, res, next) => {
                 profilePics: `/uploads/default.jpg`
             }
         })
-        fs.unlink(`public${req.user.profilePics}`, err => {})
+        fs.unlink(`public${req.user.profilePics}`, err => { })
         const user = await User.findById(req.user.id)
         res.json({
             profilePics: user.profilePics
@@ -69,4 +80,8 @@ exports.removeProfilePics = async (req, res, next) => {
             error: 'Can not remove profile picture'
         })
     }
+}
+
+exports.editProfileGetController = (req, res) => {
+
 }

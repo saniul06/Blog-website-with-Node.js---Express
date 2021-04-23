@@ -18,6 +18,7 @@ const profileSchema = new Schema({
     },
     title: {
         type: String,
+        required: true,
         trim: true,
         maxlength: 100
     },
