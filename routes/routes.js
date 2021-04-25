@@ -1,11 +1,8 @@
 const authRoute = require("./authRoutes");
 const dashboardRoute = require("./dashboardRoutes");
 const uploadRoute = require('./uploadRoutes');
+const postRoute = require('./postRoutes');
 const validatorRoutes = require("../play/play"); // TODO: remove this
-const {
-    isAuthenticated,
-    isUnAuthenticated,
-} = require("../middleware/authMiddleware");
 
 const routes = [
     {
@@ -19,6 +16,10 @@ const routes = [
     {
         path: "/upload",
         handler: uploadRoute,
+    },
+    {
+        path: "/posts",
+        handler: postRoute
     },
     {
         path: "/play", // TODO: remove this

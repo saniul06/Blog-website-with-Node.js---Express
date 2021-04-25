@@ -82,6 +82,13 @@ exports.removeProfilePics = async (req, res, next) => {
     }
 }
 
-exports.editProfileGetController = (req, res) => {
-
+exports.uploadPostImageController = (req, res) => {
+    if(req.file){
+        return res.status(200).json({
+            imgUrl: `/uploads/post-image/${req.file.filename}`
+        })
+    }
+    res.json.status(500).json({
+        Message: "Server Error(image not found)"
+    })
 }

@@ -33,16 +33,16 @@ setRoutes(app);
 // });
 
 // Defauld Error Handler
-app.use((error, req, res, next) => {
-    console.log(chalk.white.bgRed.bold(error))
-    console.log('here i am')
-    if(error.status === 404){
-        res.render('pages/error/404')
-    }
-    // if(error.status === 500){
-        res.render('pages/error/500')
-    // }
-})
+// app.use((error, req, res, next) => {
+//     console.log(chalk.white.bgRed.bold(error))
+//     console.log('here i am')
+//     if(error.status === 404){
+//         res.render('pages/error/404')
+//     }
+//     // if(error.status === 500){
+//         res.render('pages/error/500')
+//     // }
+// })
 
 //database connection
 mongoose

@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const { isAuthenticated } = require("../middleware/authMiddleware");
 const profileValidator = require('../validator/dashboard/profileValidator')
-const loginValidator = require('../validator/auth/loginValidator');
 const {
     dashboardGetController,
     createProfileGetController,
